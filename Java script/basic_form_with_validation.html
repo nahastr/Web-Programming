@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>form</title>
+        <style>
+            h1{
+                text-align: center;
+                color: blueviolet;
+            }
+            form{
+                background-color: aquamarine;
+                padding: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Registration form</h1>
+        <form name="basic_form" action="" method="POST" onsubmit="return form_validation()">
+            <label>Name</label>
+            <input type="text" name="fname">
+            <br><br>
+            
+            <label>Email</label>
+            <input type="email" name="email">
+            <br><br>
+            
+            <label>Mobile number</label>
+            <input type="text" size="10" name="mob">
+            <br><br>
+            
+            <label>Gender:</label>
+            <input type="radio" name="gender">
+            <label>Male</label>
+            <input type="radio" name="gender">
+            <label>Female</label>
+            <input type="radio" name="gender" >
+            <label>Other</label>
+            <br><br>
+            
+            <label>Age</label>
+            <input type="number" size="3" name= "age" name="age">
+            <br><br>
+            
+            <label> Course </label>
+            <select name="course">
+            	<option value="course"> Course </option>
+            	<option value="B Tech Mech"> B Tech Mech </option>
+            	<option value="MCA"> MCA </option>
+            	<option value="B Tech CS"> B Tech CS </option>
+            </select>
+            <br><br>
+            
+            <label>Enter password</label>
+            <input type="password" name="password">
+            <br><br>
+            
+            <input type="submit" value="Submit"/>
+        </form>
+        
+        <script>o
+			  	function form_validation()
+				{
+				  var name = document.forms.basic_form.fname.value;
+				  var mail = document.forms.basic_form.email.value;
+				  var mono = document.forms.basic_form.mob.value;
+				  var radios = document.getElementsByName("gender");
+				  var age = document.forms.basic_form.age.value;
+				  var course = document.forms.basic_form.course;
+				  var password = document.forms.basic_form.password.value;
+
+				  if(name == "" || name.length < 2 || !/^[a-zA-Z]+$/.test(name)){
+					alert("Please enter a valid name");
+					document.forms.basic_form.fname.focus();
+					return false;
+				  }
+				  
+				  if(mail == "" || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
+					alert("Please enter a valid email address");
+					document.forms.basic_form.email.focus();
+					return false;
+				  }
+
+				  if(mono == "" || isNaN(mono)){
+					alert("Please enter a valid mobile number");
+					document.forms.basic_form.mob.focus();
+					return false;
+				  }
+
+				  var checked = false;
+				  for(var i = 0; i < radios.length; i++) {
+					if(radios[i].checked) {
+					  checked = true;
+					  break;
+					}
+				  }
+				  if(!checked){
+					alert("Please select a gender");
+					return false;
+				  }
+
+				  if(age == "" || isNaN(age) || age < 18){
+					alert("Please enter a valid age");
+					document.forms.basic_form.age.focus();
+					return false;
+				  }
+
+				  if(course.selectedIndex < 1){
+					alert("Please select a course");
+					course.options[0].selected = true;
+					return false;
+				  }
+
+				  if(password == ""){
+					alert("Please enter a password");
+					document.forms.basic_form.password.focus();
+					return false;
+				  }
+
+				  return true; 
+				}
+
+        </script>
+    </body>
+</html> 
